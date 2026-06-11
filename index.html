@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<style>
+.katex { font-size: 1em; }
+.sim-title{text-align:center;padding:6px 0 2px;line-height:1.2}
+.sim-title-main{display:block;font-size:22px;font-weight:800;letter-spacing:1px;background:linear-gradient(90deg,#38bdf8,#818cf8,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sim-title-sub{display:block;font-size:10px;color:#475569;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.wp{background:#060f1e;border:1px solid #1e3a5f;border-radius:7px;overflow:hidden;flex-shrink:0}
+.wp-head{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:#0b1f3a;border-bottom:1px solid #1e3a5f}
+.wp-close{background:transparent;border:1px solid #1e3a5f;border-radius:4px;color:#475569;font-size:9px;padding:2px 8px;cursor:pointer;transition:.15s}
+.wp-close:hover{border-color:#38bdf8;color:#38bdf8}
+.wp-body{padding:8px 10px;display:flex;flex-direction:column;gap:5px}
+.wi{display:flex;gap:8px;font-size:9px;color:#94a3b8;line-height:1.5;align-items:flex-start}
+.wa{color:#fcd34d}
+.wn{background:#1e3a5f;color:#38bdf8;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;flex-shrink:0;margin-top:1px}
+.wbtn{padding:3px 10px;background:transparent;border:1px solid #1e3a5f;border-radius:4px;color:#475569;font-size:8px;cursor:pointer;transition:.15s;flex-shrink:0}
+.wbtn:hover{border-color:#38bdf8;color:#38bdf8}
+</style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020617;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;font-size:12px;overflow:hidden;height:100vh}
+.app{display:grid;grid-template-columns:255px 1fr 275px;height:100vh}
+.lp,.rp{background:#0b1329;padding:10px;overflow-y:auto;overflow-x:hidden}
+.lp{border-right:1px solid #1e3a5f}
+.rp{border-left:1px solid #1e3a5f}
+.ct{display:flex;flex-direction:column;background:#020617;padding:10px;gap:8px;overflow-y:auto;height:100vh}
+.pt{color:#38bdf8;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:10px 0 6px;padding-bottom:4px;border-bottom:1px solid #1e3a5f}
+.pt:first-child{margin-top:0}
+.pr{margin-bottom:7px}
+.pl{display:flex;justify-content:space-between;margin-bottom:2px}
+.pn{color:#94a3b8;font-size:10px}
+.pv{color:#38bdf8;font-size:11px;font-weight:700;font-family:monospace;min-width:50px;text-align:right}
+input[type=range]{width:100%;height:4px;-webkit-appearance:none;background:#1e3a5f;border-radius:2px;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:13px;height:13px;border-radius:50%;background:#38bdf8;cursor:pointer}
+.cr{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:7px}
+.cb{background:#060f1e;border:1px solid #1e3a5f;border-radius:5px;padding:5px 7px;text-align:center}
+.ct2{color:#475569;font-size:8px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:2px}
+.cv2{color:#38bdf8;font-size:13px;font-weight:700;font-family:monospace}
+.tr{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tl{color:#94a3b8;font-size:10px}
+.sw{position:relative;width:32px;height:16px;flex-shrink:0}
+.sw input{opacity:0;width:0;height:0;position:absolute}
+.st{position:absolute;inset:0;background:#1e3a5f;border-radius:8px;cursor:pointer;transition:.2s}
+.st:before{content:'';position:absolute;width:10px;height:10px;left:3px;top:3px;background:#475569;border-radius:50%;transition:.2s}
+.sw input:checked~.st{background:#0ea5e9}
+.sw input:checked~.st:before{transform:translateX(16px);background:#fff}
+.bp{width:100%;padding:8px;background:linear-gradient(135deg,#0ea5e9,#0284c7);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;margin-bottom:4px}
+.bp:hover{filter:brightness(1.15)}
+.bs{width:100%;padding:6px;background:transparent;border:1px solid #1e3a5f;border-radius:5px;color:#94a3b8;font-size:10px;cursor:pointer;margin-bottom:3px;transition:.15s}
+.bs:hover{border-color:#38bdf8;color:#38bdf8}
+.bc{width:100%;padding:7px 9px;background:#0f172a;border:1px solid #1e3a5f;border-radius:5px;color:#94a3b8;font-size:10px;cursor:pointer;margin-bottom:4px;text-align:left;transition:.15s}
+.bc:hover,.bc.on{border-color:#38bdf8;color:#38bdf8;background:#0b1f3a}
+.sn{color:#38bdf8;font-weight:700;margin-right:5px}
+.sep{height:1px;background:#1e3a5f;margin:7px 0}
+.mc{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.mk{background:#0b1329;border:1px solid #1e3a5f;border-radius:6px;padding:6px 7px;text-align:center}
+.ml{color:#475569;font-size:7px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:2px}
+.mv{color:#38bdf8;font-size:12px;font-weight:700;font-family:monospace;line-height:1}
+.mu{color:#475569;font-size:7px;margin-top:1px}
+.cw{background:#0b1329;border:1px solid #1e3a5f;border-radius:7px;display:flex;flex-direction:column;flex:1;overflow:hidden;min-height:200px}
+.ch{color:#475569;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;border-bottom:1px solid #1e3a5f;background:#060f1e;flex-shrink:0}
+canvas{display:block;flex:1;min-height:0;width:100%}
+.vtogs{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;background:#060f1e;border-top:1px solid #1e3a5f;flex-shrink:0}
+.vb{display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:20px;border:1.5px solid #1e3a5f;background:transparent;color:#475569;font-size:10px;font-weight:600;cursor:pointer;transition:all .18s}
+.vb:hover{border-color:var(--c);color:#e2e8f0}
+.vb.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,#000);color:#e2e8f0}
+.vb .vd{width:8px;height:8px;border-radius:50%;background:var(--c);flex-shrink:0;opacity:.35;transition:opacity .18s}
+.vb.on .vd{opacity:1}
+.it{color:#94a3b8;font-size:11px;line-height:1.6;padding:8px;background:#060f1e;border-radius:5px;border-left:2px solid #38bdf8;margin-bottom:8px;min-height:60px}
+.tabs{display:flex;border-bottom:1px solid #1e3a5f;margin-bottom:7px}
+.tab{padding:5px 11px;background:transparent;border:none;color:#475569;font-size:9px;font-weight:700;letter-spacing:1px;cursor:pointer;text-transform:uppercase;border-bottom:2px solid transparent}
+.tab.on{color:#38bdf8;border-bottom-color:#38bdf8}
+.tc{display:none}.tc.on{display:block}
+.ei{display:flex;gap:6px;margin-bottom:8px;font-size:10px;color:#94a3b8;line-height:1.5}
+.ed{color:#38bdf8;flex-shrink:0}
+.qb{background:#060f1e;border:1px solid #1e3a5f;border-radius:5px;padding:8px;margin-bottom:8px}
+.qt{color:#cbd5e1;font-size:10px;margin-bottom:6px;line-height:1.4}
+.ops{display:flex;flex-direction:column;gap:3px}
+.ob{padding:5px 8px;background:transparent;border:1px solid #1e3a5f;border-radius:4px;color:#94a3b8;font-size:9px;text-align:left;cursor:pointer;transition:.15s}
+.ob:hover:not(:disabled){border-color:#38bdf8;color:#e2e8f0}
+.ob.ok{border-color:#10b981!important;color:#10b981!important;background:#0a1f14}
+.ob.no{border-color:#ef4444!important;color:#ef4444!important;background:#1a0a0a}
+.fb{margin-top:5px;font-size:9px;line-height:1.5;padding:5px 7px;border-radius:4px;display:none}
+.fb.ok{color:#10b981;background:#0a1f14;border:1px solid #10b98133}
+.fb.no{color:#ef4444;background:#1a0a0a;border:1px solid #ef444433}
+.rg{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:6px}
+.rk{background:#0b1329;border:1px solid #1e3a5f;border-radius:5px;padding:5px 7px;text-align:center}
+.rl{color:#475569;font-size:8px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+.rv{font-size:13px;font-weight:700;font-family:monospace}
+.mn{font-size:9px;color:#475569;background:#060f1e;border:1px solid #1e3a5f;border-left:2px solid #f59e0b;border-radius:4px;padding:5px 7px;margin-bottom:6px;line-height:1.5}
+.mn b{color:#f59e0b}
+.gp{background:#0b1329;border:1px solid #1e3a5f;border-radius:7px;overflow:hidden;flex-shrink:0;display:none;flex:1;min-height:0}
+.gp.open{display:flex;flex-direction:column}
+.gph{display:flex;justify-content:space-between;align-items:center;padding:5px 10px;background:#060f1e;border-bottom:1px solid #1e3a5f;flex-shrink:0}
+.gc{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:1px;background:#1e3a5f;flex:1;min-height:0}
+.gi{background:#060f1e;padding:6px 8px;cursor:pointer;transition:.15s;display:flex;flex-direction:column;min-height:0}
+.gi:hover{background:#0b1f3a}
+.gl{font-size:8px;font-weight:700;letter-spacing:.8px;margin-bottom:3px;flex-shrink:0}
+.gi canvas{display:block;width:100%;flex:1;min-height:0}
+.gtog{background:transparent;border:1px solid #1e3a5f;border-radius:4px;color:#475569;font-size:9px;padding:2px 8px;cursor:pointer;transition:.15s}
+.gtog:hover{border-color:#38bdf8;color:#38bdf8}
+.gbtn{padding:5px 14px;background:transparent;border:1px solid #1e3a5f;border-radius:5px;color:#475569;font-size:9px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:.15s;flex-shrink:0}
+.gbtn:hover,.gbtn.on{border-color:#38bdf8;color:#38bdf8}
+.gmodal{display:none;position:fixed;inset:0;background:#000000cc;z-index:1000;align-items:center;justify-content:center}
+.gmodal.open{display:flex}
+.gmodal-box{background:#0b1329;border:1px solid #1e3a5f;border-radius:10px;width:92vw;max-width:860px;padding:18px;position:relative}
+.gmodal-title{color:#38bdf8;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:12px}
+.gmodal-close{position:absolute;top:12px;right:14px;background:transparent;border:none;color:#475569;font-size:20px;cursor:pointer;line-height:1}
+.gmodal-close:hover{color:#e2e8f0}
+.gmodal canvas{display:block;width:100%;height:280px;border-radius:5px}
+@media(max-width:900px){.gc{grid-template-columns:1fr 1fr;grid-template-rows:auto}}
+@media(max-width:900px){
+  body{overflow:auto}
+  .app{display:flex;flex-direction:column;height:auto;min-height:100vh}
+  .lp,.rp{border:none;border-bottom:1px solid #1e3a5f;max-height:none;width:100%}
+  .lp{border-right:none}
+  .rp{border-left:none}
+  .ct{height:auto;min-height:0}
+  .cw{height:340px;flex:none}
+  .mc{grid-template-columns:repeat(2,1fr)}
+  .vtogs{flex-wrap:wrap}
+  .gp{border-radius:0}
+  .gc{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .mc{grid-template-columns:1fr 1fr}
+  .cr{grid-template-columns:1fr 1fr}
+  .cw{height:280px}
+  .sim-title-main{font-size:16px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- LEFT -->
+<div class="lp">
+  <div class="pt">⚙ Parâmetros Iniciais</div>
+  <div class="mn"><b>⚠ Hipóteses do modelo:</b> movimento no vácuo (sem resistência do ar); solo em y = 0 m; gravidade constante g = 9,8 m/s².</div>
+  <div class="sep"></div>
+  <div class="pr">
+    <div class="pl"><span class="pn">v₀ₓ — Velocidade inicial X (m/s)</span><span class="pv" id="Lvx0">10</span></div>
+    <input type="range" id="Svx0" min="-30" max="30" value="10" step="0.5">
+  </div>
+  <div class="pr">
+    <div class="pl"><span class="pn">v₀ᵧ — Velocidade inicial Y (m/s)</span><span class="pv" id="Lvy0">0</span></div>
+    <input type="range" id="Svy0" min="-30" max="30" value="0" step="0.5">
+  </div>
+  <div class="cr">
+    <div class="cb"><div class="ct2"><span id="k-v0m"></span> (m/s)</div><div class="cv2" id="Cv0m">10.0</div></div>
+    <div class="cb"><div class="ct2">θ₀ (°)</div><div class="cv2" id="Cv0a">0.0°</div></div>
+  </div>
+  <div class="pr">
+    <div class="pl"><span class="pn">aₓ — Aceleração X (m/s²)</span><span class="pv" id="Lax0">0</span></div>
+    <input type="range" id="Sax0" min="-20" max="20" value="0" step="0.2">
+  </div>
+  <div class="pr">
+    <div class="pl"><span class="pn">aᵧ — Aceleração Y (m/s²)</span><span class="pv" id="Lay0">-9.8</span></div>
+    <input type="range" id="Say0" min="-20" max="20" value="-9.8" step="0.2">
+  </div>
+  <div class="cr">
+    <div class="cb"><div class="ct2"><span id="k-am"></span> (m/s²)</div><div class="cv2" id="Cam">9.8</div></div>
+    <div class="cb"><div class="ct2">θₐ (°)</div><div class="cv2" id="Caa">-90.0°</div></div>
+  </div>
+  <div class="pr">
+    <div class="pl"><span class="pn">x₀ — Posição inicial X (m)</span><span class="pv" id="Lx0">0</span></div>
+    <input type="range" id="Sx0" min="-100" max="100" value="0" step="1">
+  </div>
+  <div class="pr">
+    <div class="pl"><span class="pn">y₀ — Posição inicial Y (m)</span><span class="pv" id="Ly0">0</span></div>
+    <input type="range" id="Sy0" min="0" max="150" value="0" step="1">
+  </div>
+  <div class="pr">
+    <div class="pl"><span class="pn">Velocidade simulação (×)</span><span class="pv" id="Lspd">1.0</span></div>
+    <input type="range" id="Sspd" min="0.1" max="3" value="1" step="0.1">
+  </div>
+  <div class="sep"></div>
+  <button class="bp" id="btnAnim">▶ ANIMAR MOVIMENTO</button>
+  <button class="bs" id="btnPause">⏸ PAUSA</button>
+  <button class="bs" id="btnReset">↺ REINICIAR</button>
+  <div class="sep"></div>
+  <div class="pt">🎬 Cenários</div>
+  <button class="bc" id="bs1" onclick="loadSc(1)"><span class="sn">1</span>Queda Livre (só Y)</button>
+  <button class="bc" id="bs2" onclick="loadSc(2)"><span class="sn">2</span>Lançamento Oblíquo (X+Y)</button>
+  <button class="bc" id="bs3" onclick="loadSc(3)"><span class="sn">3</span>MRUA — Aceleração em X</button>
+  <button class="bc" id="bs4" onclick="loadSc(4)"><span class="sn">4</span>Travagem Retardada</button>
+</div>
+
+<!-- CENTER -->
+<div class="ct">
+  <div class="sim-title">
+    <span class="sim-title-main">Cinemática da Partícula</span>
+    <span class="sim-title-sub">Simulação Interactiva</span>
+  </div>
+
+  <!-- WELCOME PANEL -->
+  <div class="wp" id="welcomePanel">
+    <div class="wp-head">
+      <span style="color:#38bdf8;font-weight:700;font-size:10px;letter-spacing:1px">ℹ Como utilizar esta simulação</span>
+      <button class="wp-close" onclick="closeWelcome()">✕ Fechar</button>
+    </div>
+    <div class="wp-body">
+      <div class="wi"><span class="wn">1</span><span>Escolhe um <b>cenário</b> no painel esquerdo (ex: Lançamento Oblíquo) ou define os parâmetros manualmente com os <b>sliders</b>.</span></div>
+      <div class="wi"><span class="wn">2</span><span>Prime <b>▶ ANIMAR MOVIMENTO</b> para iniciar. Usa <b>⏸ PAUSA</b> para parar e <b>↺ REINICIAR</b> para repetir.</span></div>
+      <div class="wi"><span class="wn">3</span><span>Ativa ou desativa os <b>vetores</b> (posição, velocidade, aceleração) com os botões coloridos abaixo do gráfico.</span></div>
+      <div class="wi"><span class="wn">4</span><span>Clica em <b>📈 Gráficas</b> para ver as gráficas temporais x(t), y(t), vₓ(t), vᵧ(t), aₓ(t), aᵧ(t). Clica numa gráfica para a ampliar. Volta à simulação com <b>◀ Simulação</b>.</span></div>
+      <div class="wi"><span class="wn">5</span><span>Após animar, abre a aba <b>Questões</b> no painel direito — as perguntas são geradas com os valores reais da tua simulação.</span></div>
+      <div class="wi wa"><span class="wn" style="background:#f59e0b">⚠</span><span><b>Queda Livre e Lançamento Oblíquo:</b> define sempre <b>y₀ &gt; 0</b> (slider "Posição inicial Y") para que o objeto tenha espaço para cair. Com y₀ = 0 a simulação termina imediatamente.</span></div>
+      <div class="wi wa"><span class="wn" style="background:#f59e0b">⚠</span><span><b>Travagem:</b> é necessário <b>aₓ &lt; 0</b> para que o objeto desacelere. Se aₓ = 0, o objeto move-se indefinidamente sem parar.</span></div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="mc" style="flex:1">
+      <div class="mk"><div class="ml">Posição (x,y)</div><div class="mv" id="Mpos">0, 0</div><div class="mu">m</div></div>
+      <div class="mk"><div class="ml">Velocidade (vx,vy)</div><div class="mv" id="Mvel">0, 0</div><div class="mu">m/s</div></div>
+      <div class="mk"><div class="ml">Aceleração (ax,ay)</div><div class="mv" id="Macc">0, 0</div><div class="mu">m/s²</div></div>
+      <div class="mk"><div class="ml">Tempo t</div><div class="mv" id="Mtim">0.00</div><div class="mu">s</div></div>
+    </div>
+    <button class="gbtn" id="btnGraf" onclick="toggleGraphs()">📈 Gráficas</button>
+    <button class="wbtn" onclick="openWelcome()" title="Instruções de utilização">ℹ</button>
+  </div>
+  <div class="cw">
+    <div class="ch">Visualização — Plano XY</div>
+    <canvas id="cv"></canvas>
+    <div class="vtogs">
+      <button class="vb on" style="--c:#F97316" id="tb-traj" onclick="togV('traj',this)"><span class="vd"></span>Trajetória</button>
+      <button class="vb on" style="--c:#3B82F6" id="tb-pos"  onclick="togV('pos',this)"><span class="vd"></span><span id="k-r"></span> Posição</button>
+      <button class="vb on" style="--c:#8B5CF6" id="tb-disp" onclick="togV('disp',this)"><span class="vd"></span><span id="k-dr"></span> Deslocamento</button>
+      <button class="vb on" style="--c:#10B981" id="tb-vel"  onclick="togV('vel',this)"><span class="vd"></span><span id="k-v"></span> Velocidade</button>
+      <button class="vb on" style="--c:#EF4444" id="tb-acc"  onclick="togV('acc',this)"><span class="vd"></span><span id="k-a"></span> Aceleração</button>
+      <button class="vb"    style="--c:#F59E0B" id="tb-vx"   onclick="togV('vx',this)"><span class="vd"></span>vₓ componente</button>
+      <button class="vb"    style="--c:#6EE7B7" id="tb-vy"   onclick="togV('vy',this)"><span class="vd"></span>vᵧ componente</button>
+    </div>
+  </div>
+  <!-- GRAPHS PANEL -->
+  <div class="gp" id="graphPanel">
+    <div class="gph">
+      <span style="color:#38bdf8;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700">📈 Gráficas Temporais — clica para ampliar</span>
+      <button class="gtog" onclick="toggleGraphs()">✕ Fechar</button>
+    </div>
+    <div class="gc" id="graphContent">
+      <div class="gi" onclick="openModal('gx')"><div class="gl" style="color:#F97316">x(t) — m</div><canvas id="gx"></canvas></div>
+      <div class="gi" onclick="openModal('gy')"><div class="gl" style="color:#3B82F6">y(t) — m</div><canvas id="gy"></canvas></div>
+      <div class="gi" onclick="openModal('gvx')"><div class="gl" style="color:#F59E0B">vₓ(t) — m/s</div><canvas id="gvx"></canvas></div>
+      <div class="gi" onclick="openModal('gvy')"><div class="gl" style="color:#6EE7B7">vᵧ(t) — m/s</div><canvas id="gvy"></canvas></div>
+      <div class="gi" onclick="openModal('gax')"><div class="gl" style="color:#EF4444">aₓ(t) — m/s²</div><canvas id="gax"></canvas></div>
+      <div class="gi" onclick="openModal('gay')"><div class="gl" style="color:#f87171">aᵧ(t) — m/s²</div><canvas id="gay"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="gmodal" id="gmodal" onclick="closeModal(event)">
+  <div class="gmodal-box">
+    <div class="gmodal-title" id="gmodal-title"></div>
+    <button class="gmodal-close" onclick="document.getElementById('gmodal').classList.remove('open')">✕</button>
+    <canvas id="gmodal-canvas"></canvas>
+  </div>
+</div>
+
+<!-- RIGHT -->
+<div class="rp">
+  <div class="pt">📊 Resultados</div>
+  <div style="background:#060f1e;border:1px solid #1e3a5f;border-radius:6px;padding:8px;margin-bottom:8px">
+    <div class="rg">
+      <div class="rk"><div class="rl">Vel. máxima <span id="k-vmax"></span></div><div class="rv" style="color:#10B981" id="Rvmax">—</div><div style="color:#475569;font-size:8px">m/s</div></div>
+      <div class="rk"><div class="rl">Altura máxima y</div><div class="rv" style="color:#3B82F6" id="Rymax">—</div><div style="color:#475569;font-size:8px">m</div></div>
+      <div class="rk"><div class="rl">t (altura máx.)</div><div class="rv" style="color:#8B5CF6" id="Rtmax">—</div><div style="color:#475569;font-size:8px">s</div></div>
+      <div class="rk"><div class="rl">Alcance X final</div><div class="rv" style="color:#F59E0B" id="Rxf">—</div><div style="color:#475569;font-size:8px">m</div></div>
+    </div>
+    <div style="border-top:1px solid #1e3a5f;padding-top:6px">
+      <div style="color:#38bdf8;font-size:8px;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px">Equações do movimento</div>
+      <div id="Reqns" style="font-family:monospace;font-size:10px;line-height:2;color:#94a3b8"></div>
+    </div>
+  </div>
+  <div class="pt">📡 Interpretação em Tempo Real</div>
+  <div class="it" id="Itext">Define v₀ₓ, v₀ᵧ, aₓ e aᵧ e prime <b>▶ ANIMAR</b>.</div>
+  <div class="tabs">
+    <button class="tab on" onclick="swTab(0)">Exploração</button>
+    <button class="tab" onclick="swTab(1)">Questões</button>
+  </div>
+  <div class="tc on" id="tc0">
+    <div class="ei"><span class="ed">▸</span><span>Define v₀ₓ≠0, v₀ᵧ=0, aₓ≠0, aᵧ=0 → MRUA em X. A velocidade aumenta linearmente e x(t) é uma parábola.</span></div>
+    <div class="ei"><span class="ed">▸</span><span>Define v₀ₓ=0, aᵧ=−9,8 → Queda livre em Y. O vetor <span id="k-tip-a"></span> aponta sempre para baixo.</span></div>
+    <div class="ei"><span class="ed">▸</span><span>Combina v₀ₓ≠0 e v₀ᵧ≠0 com aᵧ=−9,8 → Lançamento oblíquo com trajetória parabólica.</span></div>
+    <div class="ei"><span class="ed">▸</span><span><span id="k-tip-dr"></span> (roxo) liga o ponto inicial ao atual. É diferente de <span id="k-tip-r"></span> (azul) que parte sempre da origem.</span></div>
+    <div class="ei"><span class="ed">▸</span><span>Ativa vₓ e vᵧ separadamente para ver como cada componente evolui no tempo.</span></div>
+    <div class="ei"><span class="ed">▸</span><span>No lançamento oblíquo, no ponto mais alto, vᵧ = 0. Confirma nos cartões de métricas.</span></div>
+  </div>
+  <div class="tc" id="tc1">
+    <div id="qLock" style="display:none;text-align:center;padding:20px 10px;color:#475569;font-size:10px;line-height:1.7;border:1px dashed #1e3a5f;border-radius:6px;margin-bottom:8px">
+      🔒 <b style="color:#38bdf8;display:block;margin-bottom:4px">Questões bloqueadas</b>
+      Executa a simulação com o botão <b>▶ ANIMAR</b> para desbloquear as questões deste cenário.
+    </div>
+    <div id="qContainer"></div>
+  </div>
+</div>
+</div>
+
+<script>
+var S = {
+  run:false, paused:false, t:0, rafId:null, lastTS:null,
+  x:0, y:0, vx:10, vy:0, ax:0, ay:-9.8,
+  x0:0, y0:0, vx0:10, vy0:0, ax0:0, ay0:-9.8,
+  varAcc:false, speed:1, sc:0, trail:[], graphData:[]
+};
+var RES = {vmax:0, ymax:0, tmax:0};
+var wasAirborne = false;
+var SHOW = {traj:true, pos:true, disp:true, vel:true, acc:true, vx:false, vy:false};
+var cv = document.getElementById('cv');
+var ctx = cv.getContext('2d');
+
+function resizeCV() {
+  var wrap = cv.parentElement;
+  var togs = wrap.querySelector('.vtogs');
+  var head = wrap.querySelector('.ch');
+  cv.width  = wrap.clientWidth;
+  cv.height = wrap.clientHeight - togs.offsetHeight - head.offsetHeight;
+}
+window.addEventListener('resize', function(){ resizeCV(); render(); });
+setTimeout(function(){ resizeCV(); updateEquations(); updateResultants(); render(); }, 80);
+
+function bindR(sid, lid, dec, cb) {
+  var el = document.getElementById(sid);
+  var lb = document.getElementById(lid);
+  el.addEventListener('input', function() {
+    lb.textContent = parseFloat(el.value).toFixed(dec);
+    cb(parseFloat(el.value));
+  });
+}
+bindR('Svx0','Lvx0',1, function(v){ S.vx0=v; updateResultants(); updateEquations(); if(!S.run) resetSim(); });
+bindR('Svy0','Lvy0',1, function(v){ S.vy0=v; updateResultants(); updateEquations(); if(!S.run) resetSim(); });
+bindR('Sax0','Lax0',1, function(v){ S.ax0=v; updateResultants(); updateEquations(); if(!S.run) resetSim(); });
+bindR('Say0','Lay0',1, function(v){ S.ay0=v; updateResultants(); updateEquations(); if(!S.run) resetSim(); });
+bindR('Sx0','Lx0',0,   function(v){ S.x0=v; updateEquations(); if(!S.run) resetSim(); });
+bindR('Sy0','Ly0',0,   function(v){ S.y0=v; updateEquations(); if(!S.run) resetSim(); });
+bindR('Sspd','Lspd',1, function(v){ S.speed=v; });
+
+function updateResultants() {
+  var vm=Math.sqrt(S.vx0*S.vx0+S.vy0*S.vy0), va=Math.atan2(S.vy0,S.vx0)*180/Math.PI;
+  var am=Math.sqrt(S.ax0*S.ax0+S.ay0*S.ay0), aa=Math.atan2(S.ay0,S.ax0)*180/Math.PI;
+  document.getElementById('Cv0m').textContent=vm.toFixed(1);
+  document.getElementById('Cv0a').textContent=va.toFixed(1)+'°';
+  document.getElementById('Cam').textContent=am.toFixed(1);
+  document.getElementById('Caa').textContent=aa.toFixed(1)+'°';
+}
+
+document.getElementById('btnAnim').addEventListener('click', function() {
+  if(S.paused){ S.paused=false; S.run=true; S.lastTS=null; requestAnimationFrame(loop); return; }
+  resetSim(); S.run=true; S.lastTS=null; requestAnimationFrame(loop); updateInterp(); unlockQuestions();
+});
+document.getElementById('btnPause').addEventListener('click', function(){ S.paused=true; });
+document.getElementById('btnReset').addEventListener('click', function(){
+  S.run=false; S.paused=false;
+  if(S.rafId) cancelAnimationFrame(S.rafId);
+  resetSim();
+});
+
+function resetSim() {
+  S.t=0; S.x=S.x0; S.y=S.y0;
+  S.vx=S.vx0; S.vy=S.vy0;
+  S.ax=S.ax0; S.ay=S.ay0;
+  S.trail=[{x:S.x,y:S.y}];
+  S.graphData=[];
+  RES.vmax=Math.sqrt(S.vx0*S.vx0+S.vy0*S.vy0);
+  RES.ymax=S.y0; RES.tmax=0;
+  wasAirborne=(S.y0>0.5||S.vy0>0);
+  updateMetrics(); updateResCards(); render(); renderGraphs();
+}
+
+function loop(ts) {
+  if(!S.run||S.paused) return;
+  if(S.lastTS===null) S.lastTS=ts;
+  var dt=Math.min((ts-S.lastTS)/1000,0.05)*S.speed;
+  S.lastTS=ts;
+  step(dt); render(); updateMetrics(); updateInterp(); renderGraphs();
+  S.rafId=requestAnimationFrame(loop);
+}
+
+function step(dt) {
+  S.t+=dt;
+  S.ax=S.ax0; S.ay=S.ay0;
+  S.vx+=S.ax*dt; S.vy+=S.ay*dt;
+  S.x+=S.vx*dt; S.y+=S.vy*dt;
+  var spd=Math.sqrt(S.vx*S.vx+S.vy*S.vy);
+  if(!S.graphData) S.graphData=[];
+  var pt={t:S.t,x:S.x,y:S.y,v:spd,vx:S.vx,vy:S.vy,ax:S.ax,ay:S.ay};
+  if(S.graphData.length<800) S.graphData.push(pt);
+  else if(S.t-S.graphData[S.graphData.length-1].t>0.04) S.graphData.push(pt);
+  if(spd>RES.vmax) RES.vmax=spd;
+  if(S.y>RES.ymax){ RES.ymax=S.y; RES.tmax=S.t; }
+  updateResCards();
+  if(S.y>0.5) wasAirborne=true;
+  if(S.y<=0&&S.vy<0&&(wasAirborne||S.t>0.5)){
+    S.y=0; S.vy=0; S.vx=0; S.ax=0; S.ay=0; S.run=false;
+    document.getElementById('Itext').innerHTML='🏁 <b>Objeto atingiu o solo!</b><br>Posição final: x = '+S.x.toFixed(2)+' m<br>Tempo de voo: <b>'+S.t.toFixed(2)+' s</b><br>Prima ↺ para repetir.';
+  }
+  if(S.sc===4&&S.vx<=0&&S.ax0<0){
+    S.vx=0; S.ax=0; S.run=false;
+    document.getElementById('Itext').innerHTML='🛑 <b>Objeto parou!</b><br>Distância: x = '+S.x.toFixed(2)+' m | Tempo: <b>'+S.t.toFixed(2)+' s</b><br>Prima ↺ para repetir.';
+  }
+  S.trail.push({x:S.x,y:S.y});
+  if(S.trail.length>800) S.trail.shift();
+}
+
+function updateMetrics() {
+  document.getElementById('Mpos').textContent=S.x.toFixed(1)+', '+S.y.toFixed(1);
+  document.getElementById('Mvel').textContent=S.vx.toFixed(1)+', '+S.vy.toFixed(1);
+  document.getElementById('Macc').textContent=S.ax.toFixed(1)+', '+S.ay.toFixed(1);
+  document.getElementById('Mtim').textContent=S.t.toFixed(2);
+}
+function updateResCards() {
+  document.getElementById('Rvmax').textContent=RES.vmax.toFixed(2);
+  document.getElementById('Rymax').textContent=RES.ymax.toFixed(2);
+  document.getElementById('Rtmax').textContent=RES.tmax.toFixed(2);
+  document.getElementById('Rxf').textContent=S.x.toFixed(2);
+}
+function updateEquations() {
+  var ax=S.ax0,ay=S.ay0,vx=S.vx0,vy=S.vy0,x0=S.x0,y0=S.y0;
+  function f(v,d){ d=d===undefined?2:d; var n=parseFloat(v.toFixed(d)); return (n>=0?'+':'')+n; }
+  function fc(v,d){ d=d===undefined?2:d; return parseFloat(v.toFixed(d)); }
+  function kspan(latex){ return '<span class="kv" data-k="'+latex.replace(/"/g,'&quot;')+'"></span>'; }
+  var xEq=kspan('x(t)='+fc(x0,1)+f(vx,2)+'\\,t'+(Math.abs(ax)>0.01?f(0.5*ax,3)+'\\,t^2':''));
+  var yEq=kspan('y(t)='+fc(y0,1)+f(vy,2)+'\\,t'+(Math.abs(ay)>0.01?f(0.5*ay,3)+'\\,t^2':''));
+  var vxEq=kspan('\\vec{v}_x(t)='+fc(vx,2)+(Math.abs(ax)>0.01?f(ax,2)+'\\,t':''));
+  var vyEq=kspan('\\vec{v}_y(t)='+fc(vy,2)+(Math.abs(ay)>0.01?f(ay,2)+'\\,t':''));
+  var axEq=kspan('\\vec{a}_x(t)='+fc(ax,2)+'\\text{ m/s}^2');
+  var ayEq=kspan('\\vec{a}_y(t)='+fc(ay,2)+'\\text{ m/s}^2');
+  var el=document.getElementById('Reqns');
+  el.innerHTML='<span style="color:#38bdf8">Posição:</span><br><span style="color:#3B82F6">'+xEq+'</span><br><span style="color:#60a5fa">'+yEq+'</span><br><span style="color:#38bdf8">Velocidade:</span><br><span style="color:#10B981">'+vxEq+'</span><br><span style="color:#6EE7B7">'+vyEq+'</span><br><span style="color:#38bdf8">Aceleração:</span><br><span style="color:#EF4444">'+axEq+'</span><br><span style="color:#fca5a5">'+ayEq+'</span>';
+  if(typeof katex!=='undefined') renderInlineKatex(el);
+}
+
+function arw(x1,y1,x2,y2,col,lw,dash){
+  var dx=x2-x1,dy=y2-y1,len=Math.sqrt(dx*dx+dy*dy);
+  if(len<4) return;
+  ctx.save(); ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=lw||2; ctx.lineCap='round';
+  if(dash) ctx.setLineDash(dash);
+  ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  ctx.setLineDash([]);
+  var a=Math.atan2(dy,dx),hs=9;
+  ctx.beginPath(); ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-hs*Math.cos(a-0.4),y2-hs*Math.sin(a-0.4));
+  ctx.lineTo(x2-hs*Math.cos(a+0.4),y2-hs*Math.sin(a+0.4));
+  ctx.closePath(); ctx.fill(); ctx.restore();
+}
+
+function getView(){
+  var W=cv.width,H=cv.height;
+  if(!W||!H) return null;
+  var xs=[S.x0,S.x,0],ys=[S.y0,S.y,0];
+  S.trail.forEach(function(p){ xs.push(p.x); ys.push(p.y); });
+  var minX=Math.min.apply(null,xs)-20,maxX=Math.max.apply(null,xs)+20;
+  var minY=Math.min.apply(null,ys)-20,maxY=Math.max.apply(null,ys)+20;
+  if(maxX-minX<60){minX-=30;maxX+=30;}
+  if(maxY-minY<60){minY-=30;maxY+=30;}
+  var sc=Math.min((W-70)/(maxX-minX),(H-70)/(maxY-minY));
+  var ox=35+(W-70)/2-((minX+maxX)/2)*sc;
+  var oy=35+(H-70)/2+((minY+maxY)/2)*sc;
+  return {sc:sc,ox:ox,oy:oy,minX:minX,maxX:maxX,minY:minY,maxY:maxY};
+}
+function wx(v,vw){ return vw.ox+v*vw.sc; }
+function wy(v,vw){ return vw.oy-v*vw.sc; }
+function tickStep(range,n){
+  var raw=range/n,mag=Math.pow(10,Math.floor(Math.log10(raw)));
+  var nice=[1,2,5,10];
+  for(var i=0;i<nice.length;i++) if(nice[i]*mag>=raw) return nice[i]*mag;
+  return nice[3]*mag;
+}
+
+function render(){
+  var W=cv.width,H=cv.height;
+  if(!W||!H) return;
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#060f1e'; ctx.fillRect(0,0,W,H);
+  var vw=getView(); if(!vw) return;
+  var A0=wx(0,vw),B0=wy(0,vw);
+  ctx.strokeStyle='#1a304a'; ctx.lineWidth=0.5;
+  var gs=vw.sc*25; if(gs<10) gs=vw.sc*50; if(gs<10) gs=vw.sc*100;
+  for(var gx=A0%gs;gx<W;gx+=gs){ ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
+  for(var gy=B0%gs;gy<H;gy+=gs){ ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke(); }
+  ctx.strokeStyle='#38bdf8'; ctx.lineWidth=1.8;
+  ctx.beginPath(); ctx.moveTo(0,B0); ctx.lineTo(W,B0); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(A0,0); ctx.lineTo(A0,H); ctx.stroke();
+  ctx.fillStyle='#38bdf8'; ctx.font='bold 11px monospace';
+  ctx.fillText('x →',W-30,B0-8); ctx.fillText('↑ y',A0+6,14);
+  var tsX=tickStep(vw.maxX-vw.minX,6),tsY=tickStep(vw.maxY-vw.minY,6);
+  ctx.fillStyle='#7dd3fa'; ctx.font='9px monospace'; ctx.textAlign='center';
+  for(var tx=Math.ceil(vw.minX/tsX)*tsX;tx<=vw.maxX;tx+=tsX){
+    var sx=wx(tx,vw);
+    ctx.strokeStyle='#38bdf880'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(sx,B0-4); ctx.lineTo(sx,B0+4); ctx.stroke();
+    ctx.fillText(Math.round(tx),sx,B0+14);
+  }
+  ctx.textAlign='right';
+  for(var ty=Math.ceil(vw.minY/tsY)*tsY;ty<=vw.maxY;ty+=tsY){
+    if(Math.abs(ty)<0.01) continue;
+    var sy=wy(ty,vw);
+    ctx.strokeStyle='#38bdf880'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(A0-4,sy); ctx.lineTo(A0+4,sy); ctx.stroke();
+    ctx.fillText(Math.round(ty),A0-6,sy+3);
+  }
+  ctx.textAlign='start';
+  var ppx=wx(S.x,vw),ppy=wy(S.y,vw);
+  var ox0=wx(S.x0,vw),oy0=wy(S.y0,vw);
+  var vs=vw.sc*0.85;
+  if(SHOW.traj&&S.trail.length>1){
+    ctx.strokeStyle='#F97316cc'; ctx.lineWidth=2; ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.beginPath();
+    S.trail.forEach(function(p,i){ i===0?ctx.moveTo(wx(p.x,vw),wy(p.y,vw)):ctx.lineTo(wx(p.x,vw),wy(p.y,vw)); });
+    ctx.stroke();
+  }
+  if(SHOW.pos) arw(A0,B0,ppx,ppy,'#3B82F6',2);
+  if(SHOW.disp&&S.t>0.05) arw(ox0,oy0,ppx,ppy,'#8B5CF6',2);
+  if(SHOW.vel&&(Math.abs(S.vx)+Math.abs(S.vy))>0.05) arw(ppx,ppy,ppx+S.vx*vs,ppy-S.vy*vs,'#10B981',2);
+  if(SHOW.vx&&Math.abs(S.vx)>0.05) arw(ppx,ppy,ppx+S.vx*vs,ppy,'#F59E0B',1.5,[6,3]);
+  if(SHOW.vy&&Math.abs(S.vy)>0.05) arw(ppx,ppy,ppx,ppy-S.vy*vs,'#6EE7B7',1.5,[6,3]);
+  if(SHOW.acc&&(Math.abs(S.ax)+Math.abs(S.ay))>0.01) arw(ppx,ppy,ppx+S.ax*vs*2,ppy-S.ay*vs*2,'#EF4444',2);
+  ctx.font='bold 10px monospace';
+  if(SHOW.pos){ctx.fillStyle='#3B82F6'; ctx.fillText('r⃗',A0+(ppx-A0)*0.5+5,B0+(ppy-B0)*0.5-5);}
+  if(SHOW.disp&&S.t>0.05){ctx.fillStyle='#8B5CF6'; ctx.fillText('Δr⃗',ox0+(ppx-ox0)*0.5+5,oy0+(ppy-oy0)*0.5-5);}
+  if(SHOW.vel&&(Math.abs(S.vx)+Math.abs(S.vy))>0.05){ctx.fillStyle='#10B981'; ctx.fillText('v⃗',ppx+S.vx*vs*0.5+5,ppy-S.vy*vs*0.5-5);}
+  if(SHOW.acc&&(Math.abs(S.ax)+Math.abs(S.ay))>0.01){ctx.fillStyle='#EF4444'; ctx.fillText('a⃗',ppx+S.ax*vs+5,ppy-S.ay*vs*2-5);}
+  if(S.t>0.1){ ctx.beginPath(); ctx.arc(ox0,oy0,4,0,Math.PI*2); ctx.strokeStyle='#47556980'; ctx.lineWidth=1.5; ctx.stroke(); }
+  ctx.beginPath(); ctx.arc(ppx,ppy,9,0,Math.PI*2);
+  ctx.fillStyle='#0ea5e9'; ctx.fill();
+  ctx.strokeStyle='#7dd3fc'; ctx.lineWidth=2; ctx.stroke();
+}
+
+function togV(key,btn){ SHOW[key]=!SHOW[key]; btn.classList.toggle('on',SHOW[key]); render(); }
+
+var graphsVisible=false;
+var modalGraphId=null;
+var GRAPH_DEFS=[
+  {id:'gx', fn:function(d){return d.x;}, color:'#F97316', label:'x(t) — Posição X (m)'},
+  {id:'gy', fn:function(d){return d.y;}, color:'#3B82F6', label:'y(t) — Posição Y (m)'},
+  {id:'gvx',fn:function(d){return d.vx;},color:'#F59E0B', label:'vₓ(t) — Velocidade X (m/s)'},
+  {id:'gvy',fn:function(d){return d.vy;},color:'#6EE7B7', label:'vᵧ(t) — Velocidade Y (m/s)'},
+  {id:'gax',fn:function(d){return d.ax;},color:'#EF4444', label:'aₓ(t) — Aceleração X (m/s²)'},
+  {id:'gay',fn:function(d){return d.ay;},color:'#f87171', label:'aᵧ(t) — Aceleração Y (m/s²)'}
+];
+function toggleGraphs(){
+  graphsVisible=!graphsVisible;
+  var cw=document.getElementById('graphPanel').previousElementSibling;
+  // find .cw
+  var cwEl=document.querySelector('.cw');
+  cwEl.style.display=graphsVisible?'none':'flex';
+  document.getElementById('graphPanel').classList.toggle('open',graphsVisible);
+  document.getElementById('btnGraf').classList.toggle('on',graphsVisible);
+  document.getElementById('btnGraf').textContent=graphsVisible?'◀ Simulação':'📈 Gráficas';
+  if(graphsVisible) renderGraphs();
+}
+function renderGraphs(){
+  if(!graphsVisible) return;
+  var data=S.graphData;
+  GRAPH_DEFS.forEach(function(g){ drawGraph(g.id,data,g.fn,g.color,5); });
+}
+function renderGraphsIfVisible(){ if(graphsVisible) renderGraphs(); }
+function openModal(id){
+  var def=null;
+  GRAPH_DEFS.forEach(function(g){ if(g.id===id) def=g; });
+  if(!def) return;
+  modalGraphId=id;
+  document.getElementById('gmodal-title').textContent=def.label;
+  document.getElementById('gmodal').classList.add('open');
+  setTimeout(function(){ drawGraphModal(def); },30);
+}
+function drawGraphModal(def){
+  var cv=document.getElementById('gmodal-canvas');
+  var W=cv.offsetWidth||700, H=280;
+  cv.width=W; cv.height=H;
+  drawGraphFull(cv,S.graphData,def.fn,def.color,7);
+}
+function closeModal(e){
+  if(e&&e.currentTarget===document.getElementById('gmodal')&&e.target!==document.getElementById('gmodal')) return;
+  document.getElementById('gmodal').classList.remove('open');
+  modalGraphId=null;
+}
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') document.getElementById('gmodal').classList.remove('open'); });
+function drawGraph(id,data,yFn,color,nTicks){
+  var cv=document.getElementById(id); if(!cv) return;
+  var W=cv.offsetWidth||200;
+  var H=cv.offsetHeight||cv.parentElement.offsetHeight-24||100;
+  if(H<20) H=100;
+  if(cv.width!==W) cv.width=W;
+  if(cv.height!==H) cv.height=H;
+  drawGraphFull(cv,data,yFn,color,nTicks||5);
+}
+function drawGraphFull(cv,data,yFn,color,nTicks){
+  var W=cv.width,H=cv.height;
+  var c=cv.getContext('2d');
+  c.clearRect(0,0,W,H); c.fillStyle='#060f1e'; c.fillRect(0,0,W,H);
+  var pad={l:36,r:10,t:8,b:20},iW=W-pad.l-pad.r,iH=H-pad.t-pad.b;
+  c.strokeStyle='#1e3a5f'; c.lineWidth=1;
+  c.beginPath(); c.moveTo(pad.l,pad.t); c.lineTo(pad.l,pad.t+iH); c.lineTo(pad.l+iW,pad.t+iH); c.stroke();
+  if(!data||data.length<2){
+    c.fillStyle='#475569'; c.font='8px monospace'; c.textAlign='center';
+    c.fillText('Executa a simulação para ver a gráfica',pad.l+iW/2,pad.t+iH/2);
+    return;
+  }
+  var tMax=data[data.length-1].t;
+  var vals=data.map(yFn);
+  var yMin=Math.min.apply(null,vals),yMax=Math.max.apply(null,vals);
+  if(Math.abs(yMax-yMin)<0.01){yMin-=1;yMax+=1;}
+  var yPad=(yMax-yMin)*0.08; yMin-=yPad; yMax+=yPad;
+  function px(t){return pad.l+(t/tMax)*iW;}
+  function py(v){return pad.t+iH-((v-yMin)/(yMax-yMin))*iH;}
+  // horizontal grid + tick labels
+  c.strokeStyle='#1a304a'; c.lineWidth=0.5;
+  for(var i=0;i<=nTicks;i++){
+    var gy2=pad.t+iH*(i/nTicks);
+    c.beginPath(); c.moveTo(pad.l,gy2); c.lineTo(pad.l+iW,gy2); c.stroke();
+    var val=yMax-(yMax-yMin)*(i/nTicks);
+    c.fillStyle='#475569'; c.font='7px monospace'; c.textAlign='right';
+    c.fillText(val.toFixed(1),pad.l-3,gy2+3);
+  }
+  // vertical grid (5 divisions)
+  c.strokeStyle='#1a304a'; c.lineWidth=0.4;
+  for(var j=1;j<5;j++){
+    var gx2=pad.l+iW*(j/5);
+    c.beginPath(); c.moveTo(gx2,pad.t); c.lineTo(gx2,pad.t+iH); c.stroke();
+    c.fillStyle='#334155'; c.font='7px monospace'; c.textAlign='center';
+    c.fillText((tMax*j/5).toFixed(1),gx2,pad.t+iH+12);
+  }
+  // zero line
+  if(yMin<0&&yMax>0){
+    var zy=py(0); c.strokeStyle='#38bdf840'; c.lineWidth=1;
+    c.setLineDash([4,3]); c.beginPath(); c.moveTo(pad.l,zy); c.lineTo(pad.l+iW,zy); c.stroke(); c.setLineDash([]);
+    c.fillStyle='#38bdf860'; c.font='7px monospace'; c.textAlign='right';
+    c.fillText('0',pad.l-3,zy+3);
+  }
+  // data line
+  c.strokeStyle=color; c.lineWidth=1.8; c.lineJoin='round'; c.lineCap='round';
+  c.beginPath();
+  data.forEach(function(d,i){ var x2=px(d.t),y2=py(yFn(d)); i===0?c.moveTo(x2,y2):c.lineTo(x2,y2); });
+  c.stroke();
+  // current time marker
+  if(S.t>0&&S.t<=tMax){
+    c.strokeStyle='#ffffff50'; c.lineWidth=1.2;
+    c.setLineDash([3,3]);
+    c.beginPath(); c.moveTo(px(S.t),pad.t); c.lineTo(px(S.t),pad.t+iH); c.stroke();
+    c.setLineDash([]);
+  }
+  // axis labels
+  c.fillStyle='#475569'; c.font='7px monospace'; c.textAlign='center';
+  c.fillText('t (s)',pad.l+iW/2,H-2);
+  c.fillText(tMax.toFixed(1)+'s',pad.l+iW,pad.t+iH+12);
+  c.fillText('0',pad.l,pad.t+iH+12);
+}
+
+function safeKatex(latex, el){
+  if(typeof katex==='undefined'||!el) return;
+  try{ katex.render(latex, el, {throwOnError:false, displayMode:false}); }catch(e){}
+}
+function renderInlineKatex(root){
+  if(typeof katex==='undefined') return;
+  root=root||document;
+  root.querySelectorAll('.kv[data-k]').forEach(function(el){
+    safeKatex(el.getAttribute('data-k'), el);
+  });
+}
+function initKatex(){
+  safeKatex('|\\vec{v}_0|',document.getElementById('k-v0m'));
+  safeKatex('|\\vec{a}|',document.getElementById('k-am'));
+  safeKatex('\\vec{r}',document.getElementById('k-r'));
+  safeKatex('\\Delta\\vec{r}',document.getElementById('k-dr'));
+  safeKatex('\\vec{v}',document.getElementById('k-v'));
+  safeKatex('\\vec{a}',document.getElementById('k-a'));
+  safeKatex('|\\vec{v}|',document.getElementById('k-vmax'));
+  safeKatex('\\vec{v}',document.getElementById('k-tip-v'));
+  safeKatex('\\vec{a}',document.getElementById('k-tip-a'));
+  safeKatex('\\Delta\\vec{r}',document.getElementById('k-tip-dr'));
+  safeKatex('\\vec{r}',document.getElementById('k-tip-r'));
+}
+var katexAttempts=0;
+(function waitKatex(){
+  katexAttempts++;
+  if(typeof katex!=='undefined'){
+    try{ initKatex(); updateEquations(); }catch(e){}
+    document.getElementById('qLock').style.display='block';
+    document.getElementById('qContainer').innerHTML='';
+  } else if(katexAttempts<40){
+    setTimeout(waitKatex,100);
+  } else {
+    // KaTeX unavailable — run without it
+    updateEquations();
+    document.getElementById('qLock').style.display='block';
+    document.getElementById('qContainer').innerHTML='';
+  }
+})();
+
+var scTxt=['',
+  '🔴 <b>Queda Livre:</b> v₀ₓ=0, v₀ᵧ=0, aᵧ=−9,8 m/s². Só em Y. vᵧ = aᵧ·t, y = y₀ + ½·aᵧ·t².',
+  '🟢 <b>Lançamento Oblíquo:</b> Em X: MRU. Em Y: MRUA com aᵧ=−g. Trajetória parabólica.',
+  '🔵 <b>MRUA em X:</b> v₀ₓ=5 m/s, aₓ=3 m/s², aᵧ=0. Velocidade aumenta linearmente: vₓ(t) = v₀ₓ + aₓ·t. Posição: x(t) = v₀ₓ·t + ½·aₓ·t². Observa a gráfica x(t): é uma parábola.',
+  '🟡 <b>Travagem:</b> aₓ&lt;0 desacelera até parar. Distância = v₀ₓ²/(2|aₓ|).'
+];
+
+function setSlider(sid,lid,val,dec){
+  document.getElementById(sid).value=val;
+  document.getElementById(lid).textContent=parseFloat(val).toFixed(dec);
+}
+function loadSc(n){
+  S.sc=n; S.run=false; S.paused=false;
+  if(S.rafId) cancelAnimationFrame(S.rafId);
+  document.querySelectorAll('.bc').forEach(function(b){b.classList.remove('on');});
+  document.getElementById('bs'+n).classList.add('on');
+  if(n===1){ setSlider('Svx0','Lvx0',0,1); setSlider('Svy0','Lvy0',0,1); setSlider('Sax0','Lax0',0,1); setSlider('Say0','Lay0',-9.8,1); setSlider('Sx0','Lx0',0,0); setSlider('Sy0','Ly0',80,0); S.vx0=0; S.vy0=0; S.ax0=0; S.ay0=-9.8; S.x0=0; S.y0=80; }
+  else if(n===2){ setSlider('Svx0','Lvx0',15,1); setSlider('Svy0','Lvy0',20,1); setSlider('Sax0','Lax0',0,1); setSlider('Say0','Lay0',-9.8,1); setSlider('Sx0','Lx0',0,0); setSlider('Sy0','Ly0',0,0); S.vx0=15; S.vy0=20; S.ax0=0; S.ay0=-9.8; S.x0=0; S.y0=0; }
+  else if(n===3){ setSlider('Svx0','Lvx0',5,1); setSlider('Svy0','Lvy0',0,1); setSlider('Sax0','Lax0',3,1); setSlider('Say0','Lay0',0,1); setSlider('Sx0','Lx0',0,0); setSlider('Sy0','Ly0',0,0); S.vx0=5; S.vy0=0; S.ax0=3; S.ay0=0; S.x0=0; S.y0=0; }
+  else if(n===4){ setSlider('Svx0','Lvx0',25,1); setSlider('Svy0','Lvy0',0,1); setSlider('Sax0','Lax0',-5,1); setSlider('Say0','Lay0',0,1); setSlider('Sx0','Lx0',0,0); setSlider('Sy0','Ly0',0,0); S.vx0=25; S.vy0=0; S.ax0=-5; S.ay0=0; S.x0=0; S.y0=0; }
+  document.getElementById('Itext').innerHTML=scTxt[n];
+  renderInlineKatex(document.getElementById('Itext'));
+  document.getElementById('qLock').style.display='block';
+  document.getElementById('qContainer').innerHTML='';
+  updateResultants(); updateEquations(); resetSim();
+}
+
+function updateInterp(){
+  if(S.sc>0) return;
+  var spd=Math.sqrt(S.vx*S.vx+S.vy*S.vy);
+  var hasX=Math.abs(S.vx0)>0.1||Math.abs(S.ax0)>0.01;
+  var hasY=Math.abs(S.vy0)>0.1||Math.abs(S.ay0)>0.01;
+  var tipo=hasX&&hasY?'Movimento 2D (X e Y)':hasX?'Movimento em X (1D)':hasY?'Movimento em Y (1D)':'Repouso';
+  document.getElementById('Itext').innerHTML='<b>'+tipo+'</b><br>x='+S.x.toFixed(2)+'m | y='+S.y.toFixed(2)+'m<br>vₓ='+S.vx.toFixed(2)+' vᵧ='+S.vy.toFixed(2)+' m/s<br><span class="kv" data-k="|\\vec{v}|"></span>='+spd.toFixed(2)+' m/s | t='+S.t.toFixed(2)+'s';
+  renderInlineKatex(document.getElementById('Itext'));
+}
+
+function swTab(i){
+  document.querySelectorAll('.tab').forEach(function(t,j){t.classList.toggle('on',j===i);});
+  document.getElementById('tc0').classList.toggle('on',i===0);
+  document.getElementById('tc1').classList.toggle('on',i===1);
+}
+
+// ── WELCOME PANEL ─────────────────────────────────────
+function closeWelcome(){
+  document.getElementById('welcomePanel').style.display='none';
+}
+function openWelcome(){
+  document.getElementById('welcomePanel').style.display='block';
+}
+// Each generator receives the simulation state snapshot and returns
+// an array of {q, ops:[{t,ok,fb}]} — same structure as before.
+
+function r(v,d){ return parseFloat(v.toFixed(d===undefined?2:d)); }
+function n2(v){ return r(v,2); }
+function n1(v){ return r(v,1); }
+
+function genQ0(snap){
+  // Exploration: always conceptual, values from snap
+  var am=r(Math.sqrt(snap.ax0*snap.ax0+snap.ay0*snap.ay0),1);
+  return [
+    {q:'O vetor deslocamento Δr⃗ representa:',ops:[
+      {t:'A distância total percorrida pelo objeto',ok:false,fb:'Incorreto. A distância percorrida é escalar e depende do trajeto completo.'},
+      {t:'Da posição inicial até à posição atual, independente do caminho',ok:true,fb:'Correto! Δr⃗ = r⃗(t) − r⃗(t₀). É um vetor entre dois pontos, não o comprimento do trajeto.'},
+      {t:'Da origem do referencial até à posição atual',ok:false,fb:'Incorreto. Esse é o vetor posição r⃗, não o deslocamento.'},
+      {t:'A velocidade integrada no tempo',ok:false,fb:'Incorreto. Integrar a velocidade dá o deslocamento numericamente, mas Δr⃗ é definido geometricamente.'}
+    ]},
+    (function(){
+      var ax=r(snap.ax0,1), ay=r(snap.ay0,1);
+      var correct=r(Math.sqrt(ax*ax+ay*ay),2);
+      var wrong1=r(Math.abs(ax)+Math.abs(ay),2);
+      var wrong2=r(Math.abs(ax*ay),2);
+      var wrong3=r(Math.abs(ax-ay),2);
+      return {q:'Com aₓ = '+ax+' m/s² e aᵧ = '+ay+' m/s², qual é o módulo da aceleração resultante |a⃗|?',ops:[
+        {t:wrong1+' m/s²',ok:false,fb:'Incorreto. Vetores não se somam algebricamente. Usa o teorema de Pitágoras: |a⃗| = √(aₓ² + aᵧ²).'},
+        {t:correct+' m/s²',ok:true,fb:'Correto! |a⃗| = √('+ax+'² + '+ay+'²) = √'+r(ax*ax+ay*ay,2)+' ≈ '+correct+' m/s².'},
+        {t:wrong3+' m/s²',ok:false,fb:'Incorreto. A subtração dos módulos não tem significado físico aqui. Usa √(aₓ² + aᵧ²).'},
+        {t:wrong2+' m/s²',ok:false,fb:'Incorreto. O produto aₓ·aᵧ não corresponde a nenhuma grandeza física relevante aqui.'}
+      ]};
+    })(),
+    {q:'[ANÁLISE] O vetor velocidade v⃗ e o vetor aceleração a⃗ podem apontar em direções diferentes?',ops:[
+      {t:'Não, têm sempre a mesma direção',ok:false,fb:'Incorreto. No lançamento oblíquo, a⃗ aponta sempre para baixo e v⃗ muda de direção ao longo da trajetória.'},
+      {t:'Sim, e isso é possível e frequente',ok:true,fb:'Correto! No lançamento oblíquo, v⃗ é tangente à trajetória e a⃗ = g aponta para baixo. São perpendiculares no ponto mais alto.'},
+      {t:'Só são diferentes no movimento circular',ok:false,fb:'Incorreto. Qualquer movimento curvilíneo tem v⃗ e a⃗ em direções distintas.'},
+      {t:'Nunca, porque a aceleração define a direção da velocidade',ok:false,fb:'Incorreto. A aceleração altera o módulo e/ou direção de v⃗, mas num instante qualquer podem ter direções muito diferentes.'}
+    ]}
+  ];
+}
+
+function genQ1(snap){
+  // Queda livre: 1 conceptual, 1 numérica, 1 previsão
+  var y0=r(snap.y0,0), g=r(Math.abs(snap.ay0),1);
+  var tq=r(Math.sqrt(2*y0/g),2); // tempo de queda teórico
+  var vf=r(g*tq,2); // velocidade final
+  var t1=r(tq/2,2); var v1=r(g*t1,2); // a meio
+  var t2=r(tq*1.5,2); // falso (além do solo)
+  return [
+    {q:'Neste cenário (queda livre de y₀ = '+y0+' m), o que observas na gráfica y(t)?',ops:[
+      {t:'Uma linha reta com declive constante',ok:false,fb:'Incorreto. y(t) = y₀ + ½·aᵧ·t² é quadrático. A velocidade aumenta com o tempo, logo o declive da curva varia.'},
+      {t:'Uma parábola — o objeto acelera enquanto cai',ok:true,fb:'Correto! Com aᵧ = −'+g+' m/s² constante, y(t) é de 2.º grau. A curva y(t) é uma parábola convexa que decresce.'},
+      {t:'Uma linha horizontal — y não muda',ok:false,fb:'Incorreto. Linha horizontal significaria objeto parado. A gravidade atua continuamente sobre o objeto.'},
+      {t:'Uma parábola que sobe e depois desce',ok:false,fb:'Incorreto. Como v₀ᵧ = 0, o objeto começa a cair imediatamente sem fase de subida.'}
+    ]},
+    {q:'[CÁLCULO] Com y₀ = '+y0+' m e g = '+g+' m/s², qual é a velocidade ao atingir o solo?',ops:[
+      {t:v1+' m/s',ok:false,fb:'Incorreto. '+v1+' m/s seria a velocidade a meio do percurso (t = '+t1+' s). A velocidade final é maior.'},
+      {t:vf+' m/s',ok:true,fb:'Correto! t = √(2·'+y0+'/'+g+') = '+tq+' s → vf = '+g+'×'+tq+' = '+vf+' m/s. Confirma parando a simulação quando o objeto atinge o solo.'},
+      {t:r(vf*2,2)+' m/s',ok:false,fb:'Incorreto. '+r(vf*2,2)+' m/s seria o dobro do valor correto. Verifica o cálculo: vf = g·t = g·√(2y₀/g).'},
+      {t:r(g*t2,2)+' m/s',ok:false,fb:'Incorreto. Esse valor corresponde a um tempo além da chegada ao solo. O objeto já parou antes.'}
+    ]},
+    {q:'[PREVISÃO] Se duplicarmos a altura inicial y₀ de '+y0+' m para '+r(y0*2,0)+' m, o tempo de queda:',ops:[
+      {t:'Duplica (passa de '+tq+' s para '+r(tq*2,2)+' s)',ok:false,fb:'Incorreto. t = √(2y₀/g), logo t ∝ √y₀. Duplicar y₀ multiplica t por √2 ≈ 1,41, não por 2.'},
+      {t:'Multiplica por √2 (passa a '+r(tq*Math.sqrt(2),2)+' s)',ok:true,fb:'Correto! t = √(2y₀/g) → duplicar y₀ → t·√2 = '+r(tq*Math.sqrt(2),2)+' s. Experimenta na simulação alterando y₀!'},
+      {t:'Quadruplica (passa para '+r(tq*4,2)+' s)',ok:false,fb:'Incorreto. Quadruplicar t exigiria multiplicar y₀ por 4 (não por 2), pois t² ∝ y₀.'},
+      {t:'Não muda — o tempo não depende da altura',ok:false,fb:'Incorreto. t = √(2y₀/g) depende claramente de y₀. Maior altura → mais tempo de queda.'}
+    ]}
+  ];
+}
+
+function genQ2(snap){
+  var vx=r(snap.vx0,1), vy=r(snap.vy0,1), g=r(Math.abs(snap.ay0),1);
+  var tup=r(vy/g,2); // tempo até ponto mais alto
+  var ymax=r(snap.y0 + vy*tup - 0.5*g*tup*tup,1);
+  var xmax=r(vx*(2*tup),1); // alcance (y0=0)
+  var v45=r(Math.sqrt(vx*vx+vy*vy),1);
+  return [
+    {q:'No ponto mais alto desta trajetória (y_max ≈ '+ymax+' m), qual grandeza vetorial é zero?',ops:[
+      {t:'A velocidade horizontal vₓ = '+vx+' m/s',ok:false,fb:'Incorreto. vₓ = v₀ₓ = '+vx+' m/s é constante durante todo o voo (sem resistência do ar).'},
+      {t:'A velocidade vertical vᵧ',ok:true,fb:'Correto! No ponto mais alto, vᵧ = 0 — a gravidade anulou progressivamente a componente vertical. Confirma na gráfica |v|(t): o mínimo ocorre em t = '+tup+' s.'},
+      {t:'A aceleração gravitacional g',ok:false,fb:'Incorreto. a⃗ = g = '+g+' m/s² aponta sempre para baixo, mesmo no ponto mais alto da trajetória.'},
+      {t:'O módulo total da velocidade |v⃗|',ok:false,fb:'Incorreto. No ponto mais alto |v⃗| = vₓ = '+vx+' m/s ≠ 0. Apenas vᵧ é zero.'}
+    ]},
+    {q:'[CÁLCULO] Com v₀ₓ = '+vx+' m/s e v₀ᵧ = '+vy+' m/s, qual é a altura máxima atingida?',ops:[
+      {t:r(ymax*0.5,1)+' m',ok:false,fb:'Incorreto. Esse seria metade do valor correto. Usa y_max = v₀ᵧ²/(2g) = '+vy+'²/(2×'+g+').'},
+      {t:ymax+' m',ok:true,fb:'Correto! t_max = v₀ᵧ/g = '+vy+'/'+g+' = '+tup+' s → y_max = v₀ᵧ·t − ½g·t² = '+ymax+' m. Confirma no cartão "Altura máxima".'},
+      {t:r(ymax*2,1)+' m',ok:false,fb:'Incorreto. O dobro seria se g fosse metade. Verifica: y_max = '+vy+'²/(2×'+g+') = '+ymax+' m.'},
+      {t:r(vy*vy/(g),1)+' m',ok:false,fb:'Incorreto. Faltou dividir por 2: y_max = v₀ᵧ²/(2g), não v₀ᵧ²/g.'}
+    ]},
+    {q:'[PREVISÃO] Mantendo |v⃗₀| = '+v45+' m/s, para qual ângulo seria máximo o alcance horizontal?',ops:[
+      {t:'30°',ok:false,fb:'Incorreto. A 30° o alcance é R·sin(60°)/sin(90°) — menor que a 45°. Podes verificar alterando v₀ₓ e v₀ᵧ mantendo |v⃗₀| = '+v45+' m/s.'},
+      {t:'45°',ok:true,fb:'Correto! R = v₀²·sin(2θ)/g é máximo quando 2θ = 90° → θ = 45°. Curiosidade: ângulos complementares (ex: 30° e 60°) têm sempre o mesmo alcance.'},
+      {t:'60°',ok:false,fb:'Incorreto. A 60° o alcance é igual ao de 30°, mas menor que a 45°. Os ângulos complementares têm o mesmo alcance.'},
+      {t:'90°',ok:false,fb:'Incorreto. A 90° (lançamento vertical) o alcance horizontal é zero — o objeto sobe e cai no mesmo ponto.'}
+    ]}
+  ];
+}
+
+function genQ3(snap){
+  var vx=r(snap.vx0,1), ax=r(snap.ax0,1);
+  var isMRUA = Math.abs(ax) > 0.05;
+
+  if(!isMRUA) {
+    // ax = 0 → MRU: preguntas coherentes con velocidad constante
+    var xt2=r(vx*2,2), xt4=r(vx*4,2);
+    return [
+      {q:'Com aₓ = 0 e v₀ₓ = '+vx+' m/s (MRU), o que observas na gráfica vₓ(t)?',ops:[
+        {t:'Uma linha reta crescente — a velocidade aumenta',ok:false,fb:'Incorreto. Velocidade crescente implica aₓ > 0. Aqui aₓ = 0: não há aceleração, a velocidade não muda.'},
+        {t:'Uma linha horizontal — a velocidade é constante ('+vx+' m/s)',ok:true,fb:'Correto! No MRU, aₓ = 0 → vₓ = v₀ₓ = '+vx+' m/s para todo o t. A gráfica vₓ(t) é uma reta horizontal. Confirma na simulação.'},
+        {t:'Uma parábola',ok:false,fb:'Incorreto. Parábola em vₓ(t) implicaria aceleração variável. Aqui aₓ = 0.'},
+        {t:'Zero — o objeto está parado',ok:false,fb:'Incorreto. v₀ₓ = '+vx+' m/s ≠ 0. O objeto move-se com velocidade constante, não está parado.'}
+      ]},
+      {q:'[CÁLCULO] Com v₀ₓ = '+vx+' m/s e aₓ = 0, qual é a posição x ao fim de 2 s?',ops:[
+        {t:r(xt2/2,2)+' m',ok:false,fb:'Incorreto. x = v₀ₓ·t = '+vx+'×2 = '+xt2+' m. Não divides por 2 — não há fator ½ porque aₓ = 0.'},
+        {t:xt2+' m',ok:true,fb:'Correto! x(t) = v₀ₓ·t = '+vx+'×2 = '+xt2+' m. Com aₓ = 0, o termo ½·aₓ·t² é nulo. Confirma nas métricas da simulação.'},
+        {t:r(vx,2)+' m',ok:false,fb:'Incorreto. '+vx+' m seria a posição ao fim de 1 s, não de 2 s. A posição cresce: x = '+vx+'×t.'},
+        {t:xt4+' m',ok:false,fb:'Incorreto. '+xt4+' m seria ao fim de 4 s. Ao fim de 2 s: x = '+vx+'×2 = '+xt2+' m.'}
+      ]},
+      {q:'[ANÁLISE] O que aconteceria se adicionasses aₓ = 3 m/s² a este movimento?',ops:[
+        {t:'Nada — a velocidade não depende da aceleração',ok:false,fb:'Incorreto. vₓ(t) = v₀ₓ + aₓ·t. Com aₓ ≠ 0, a velocidade varia e deixa de ser constante.'},
+        {t:'A gráfica vₓ(t) passaria de horizontal para uma reta inclinada (declive = 3)',ok:true,fb:'Correto! Com aₓ = 3 m/s²: vₓ(t) = '+vx+' + 3t — reta com declive 3. E x(t) passaria de linear para parabólico. Experimenta no cenário: altera aₓ e observa as gráficas!'},
+        {t:'A gráfica vₓ(t) passaria a ser uma parábola',ok:false,fb:'Incorreto. vₓ(t) = v₀ₓ + aₓ·t é sempre linear (1.º grau). É a posição x(t) que se torna parabólica.'},
+        {t:'O objeto pararia imediatamente',ok:false,fb:'Incorreto. aₓ = 3 m/s² acelera o objeto — aumenta a velocidade, não a reduz a zero.'}
+      ]}
+    ];
+  }
+
+  // ax ≠ 0 → MRUA
+  var t2=2, vt2=r(vx+ax*t2,2), xt2=r(vx*t2+0.5*ax*t2*t2,2);
+  var t3=3, vt3=r(vx+ax*t3,2);
+  return [
+    {q:'Neste cenário (MRUA em X), o que observas na gráfica x(t)?',ops:[
+      {t:'Uma linha reta com declive constante',ok:false,fb:'Incorreto. Linha reta em x(t) corresponde a MRU (aₓ = 0). Aqui aₓ = '+ax+' m/s² ≠ 0, logo x(t) = '+vx+'t + '+r(0.5*ax,2)+'t² é de 2.º grau.'},
+      {t:'Uma parábola — o declive da curva aumenta a cada instante',ok:true,fb:'Correto! x(t) = '+vx+'t + '+r(0.5*ax,2)+'t² é quadrático. O declive em cada ponto representa a velocidade, que cresce '+ax+' m/s por segundo.'},
+      {t:'Uma linha horizontal — x não muda',ok:false,fb:'Incorreto. Linha horizontal seria objeto em repouso. Aqui v₀ₓ = '+vx+' m/s e aₓ = '+ax+' m/s².'},
+      {t:'Uma sinusoide — o objeto oscila',ok:false,fb:'Incorreto. Sinusoide implicaria aceleração variável e periódica. No MRUA a aceleração é constante.'}
+    ]},
+    {q:'[CÁLCULO] Com v₀ₓ = '+vx+' m/s e aₓ = '+ax+' m/s², qual é a velocidade ao fim de '+t2+' s?',ops:[
+      {t:r(vx+ax*1,2)+' m/s',ok:false,fb:'Incorreto. Esse seria o valor ao fim de 1 s. Usa vₓ(t) = v₀ₓ + aₓ·t = '+vx+' + '+ax+'×'+t2+'.'},
+      {t:vt2+' m/s',ok:true,fb:'Correto! vₓ('+t2+') = '+vx+' + '+ax+'×'+t2+' = '+vt2+' m/s. A velocidade aumenta '+ax+' m/s por cada segundo. Confirma nas métricas da simulação.'},
+      {t:vt3+' m/s',ok:false,fb:'Incorreto. '+vt3+' m/s seria o valor ao fim de '+t3+' s, não de '+t2+' s.'},
+      {t:xt2+' m/s',ok:false,fb:'Incorreto. '+xt2+' m é a posição x ao fim de '+t2+' s — não confundas posição com velocidade.'}
+    ]},
+    {q:'[PREVISÃO] Se duplicarmos aₓ de '+ax+' para '+r(ax*2,1)+' m/s², a posição ao fim de '+t2+' s passa de '+xt2+' m para:',ops:[
+      {t:r(xt2*2,2)+' m (duplica)',ok:false,fb:'Incorreto. x = v₀ₓ·t + ½·aₓ·t². Duplicar aₓ duplica apenas o 2.º termo, não a posição total.'},
+      {t:r(vx*t2+0.5*ax*2*t2*t2,2)+' m',ok:true,fb:'Correto! Com aₓ = '+r(ax*2,1)+': x = '+vx+'×'+t2+' + ½×'+r(ax*2,1)+'×'+t2+'² = '+r(vx*t2+0.5*ax*2*t2*t2,2)+' m. Experimenta na simulação!'},
+      {t:r(vx*t2+0.5*ax*3*t2*t2,2)+' m',ok:false,fb:'Incorreto. Esse seria para aₓ = '+r(ax*3,1)+' m/s² (triplicar). Aqui duplicamos: aₓ = '+r(ax*2,1)+' m/s².'},
+      {t:xt2+' m (não muda)',ok:false,fb:'Incorreto. A aceleração afeta diretamente a posição: x = v₀ₓ·t + ½·aₓ·t². Duplicar aₓ aumenta o 2.º termo.'}
+    ]}
+  ];
+}
+
+function genQ4(snap){
+  var vx=r(snap.vx0,1), ax=r(Math.abs(snap.ax0),1);
+
+  // Guard: if ax=0, no braking — show coherent questions
+  if(ax < 0.05) {
+    return [
+      {q:'Para que este cenário seja uma travagem, qual condição deve verificar-se?',ops:[
+        {t:'v₀ₓ = 0',ok:false,fb:'Incorreto. v₀ₓ = 0 significa objeto parado — não há movimento para travar.'},
+        {t:'aₓ < 0 (aceleração oposta ao movimento)',ok:true,fb:'Correto! A travagem ocorre quando a aceleração se opõe à velocidade. Com v₀ₓ > 0, é necessário aₓ < 0. Atualmente aₓ = 0 — ajusta o slider aₓ para um valor negativo e observa!'},
+        {t:'aᵧ > 0',ok:false,fb:'Incorreto. A componente vertical não afeta o movimento horizontal neste modelo. A travagem requer aₓ < 0.'},
+        {t:'v₀ₓ > 30 m/s',ok:false,fb:'Incorreto. A travagem pode ocorrer a qualquer velocidade. O que define a travagem é aₓ < 0, não o valor de v₀ₓ.'}
+      ]},
+      {q:'Com aₓ = 0 e v₀ₓ = '+vx+' m/s, o objeto viaja indefinidamente sem parar. Porquê?',ops:[
+        {t:'Porque a velocidade é muito alta',ok:false,fb:'Incorreto. A velocidade inicial não determina se o objeto para. É a aceleração que altera a velocidade ao longo do tempo.'},
+        {t:'Porque sem aceleração (aₓ = 0), não há força a reduzir a velocidade — 1.ª Lei de Newton',ok:true,fb:'Correto! A 1.ª Lei de Newton: sem força resultante, o objeto mantém a velocidade constante. Aqui aₓ = 0 → vₓ = '+vx+' m/s para sempre. Para travar, precisas de aₓ < 0.'},
+        {t:'Porque aᵧ = 0',ok:false,fb:'Incorreto. aᵧ não afeta o movimento horizontal. É aₓ que determina se vₓ muda.'},
+        {t:'Porque não há gravidade',ok:false,fb:'Incorreto. No movimento horizontal com aᵧ = 0, a gravidade é compensada pela normal. O movimento horizontal depende de aₓ.'}
+      ]},
+      {q:'[PREVISÃO] Se definires aₓ = −5 m/s² com v₀ₓ = '+vx+' m/s, qual seria a distância de paragem?',ops:[
+        {t:r(vx*vx/10,2)+' m',ok:true,fb:'Correto! d = v₀ₓ²/(2|aₓ|) = '+vx+'²/(2×5) = '+r(vx*vx,1)+'/10 = '+r(vx*vx/10,2)+' m. Experimenta: define aₓ = −5 m/s² e anima!'},
+        {t:r(vx*2,2)+' m',ok:false,fb:'Incorreto. d = v₀ₓ²/(2|aₓ|) = '+r(vx*vx/10,2)+' m. A distância depende do quadrado de v₀ₓ, não do dobro.'},
+        {t:r(vx/5,2)+' m',ok:false,fb:'Incorreto. v₀ₓ/|aₓ| dá o tempo de paragem, não a distância. Usa d = v₀ₓ²/(2|aₓ|).'},
+        {t:'Infinita — nunca para',ok:false,fb:'Incorreto. Com aₓ = −5 m/s² ≠ 0, o objeto desacelera e para. Só seria infinita se aₓ = 0.'}
+      ]}
+    ];
+  }
+
+  var dtrav=r(vx*vx/(2*ax),2);
+  var ttrav=r(vx/ax,2);
+  var d2v=r((2*vx)*(2*vx)/(2*ax),2);
+  return [
+    {q:'Na travagem com v₀ₓ = '+vx+' m/s e |aₓ| = '+ax+' m/s², qual é a distância de paragem?',ops:[
+      {t:r(dtrav/2,2)+' m',ok:false,fb:'Incorreto. Metade seria se v₀ₓ fosse √2 vezes menor. Usa d = v₀ₓ²/(2|aₓ|) = '+vx+'²/(2×'+ax+').'},
+      {t:dtrav+' m',ok:true,fb:'Correto! d = v₀ₓ²/(2|aₓ|) = '+vx+'²/(2×'+ax+') = '+r(vx*vx,1)+'/('+r(2*ax,1)+') = '+dtrav+' m. Confirma no cartão "Alcance X final".'},
+      {t:r(vx*ttrav,2)+' m',ok:false,fb:'Incorreto. v₀ₓ·t daria a posição sem desaceleração. Usa d = v₀ₓ²/(2|aₓ|) que já incorpora o efeito da travagem.'},
+      {t:r(dtrav*2,2)+' m',ok:false,fb:'Incorreto. O dobro seria se |aₓ| fosse metade. Verifica: d = '+vx+'²/(2×'+ax+') = '+dtrav+' m.'}
+    ]},
+    {q:'[PREVISÃO] Se a velocidade inicial fosse o dobro ('+r(vx*2,1)+' m/s), a distância de paragem seria:',ops:[
+      {t:r(dtrav*2,2)+' m (duplica)',ok:false,fb:'Incorreto. d ∝ v₀ₓ². Duplicar v₀ₓ multiplica d por 2² = 4, não por 2.'},
+      {t:d2v+' m (quadruplica)',ok:true,fb:'Correto! d = v₀ₓ²/(2|aₓ|) → (2v₀ₓ)²/(2|aₓ|) = 4·d = 4×'+dtrav+' = '+d2v+' m. Duplicar a velocidade quadruplica a distância de travagem!'},
+      {t:r(dtrav*1.5,2)+' m (aumenta 50%)',ok:false,fb:'Incorreto. +50% seria se d ∝ v₀ₓ. Mas d ∝ v₀ₓ²: duplicar v₀ₓ → ×4 em d.'},
+      {t:r(dtrav*8,2)+' m (multiplica por 8)',ok:false,fb:'Incorreto. ×8 seria para triplicar v₀ₓ (3²=9). Duplicar v₀ₓ → ×4 em d.'}
+    ]},
+    {q:'[CONTEXTO REAL] Este modelo de travagem aplica-se à frenagem de um carro. Qual hipótese fundamental está implícita?',ops:[
+      {t:'A força de travagem é constante ao longo de todo o percurso',ok:true,fb:'Correto! aₓ = F/m constante implica F constante. Na realidade, a força varia (temperatura dos travões, tipo de piso, ABS). O modelo é uma simplificação útil mas limitada.'},
+      {t:'O carro acelera antes de travar',ok:false,fb:'Incorreto. O modelo começa diretamente com v₀ₓ = '+vx+' m/s. Não inclui fase de aceleração prévia.'},
+      {t:'Não há atrito entre os pneus e o solo',ok:false,fb:'Incorreto. O atrito é precisamente a causa da travagem. A hipótese é que esse atrito (e portanto |aₓ|) se mantém constante.'},
+      {t:'A velocidade inicial é zero',ok:false,fb:'Incorreto. v₀ₓ = '+vx+' m/s neste cenário. A travagem começa sempre com velocidade inicial não nula.'}
+    ]}
+  ];
+}
+
+var qAnswered={};
+var qGenerated={}; // cache: generated questions per run
+
+function loadQuestions(sc){
+  var snap={vx0:S.vx0,vy0:S.vy0,ax0:S.ax0,ay0:S.ay0,x0:S.x0,y0:S.y0};
+  var qs;
+  if(sc===0) qs=genQ0(snap);
+  else if(sc===1) qs=genQ1(snap);
+  else if(sc===2) qs=genQ2(snap);
+  else if(sc===3) qs=genQ3(snap);
+  else if(sc===4) qs=genQ4(snap);
+  else qs=genQ0(snap);
+  qGenerated[sc]=qs;
+  var container=document.getElementById('qContainer');
+  document.getElementById('qLock').style.display='none';
+  qAnswered[sc]=qAnswered[sc]||{};
+  container.innerHTML='';
+  qs.forEach(function(q,qi){
+    var qid='sc'+sc+'q'+qi;
+    var answered=qAnswered[sc][qi];
+    var html='<div class="qb"><div class="qt">'+(qi+1)+'. '+q.q+'</div><div class="ops">';
+    q.ops.forEach(function(op,oi){
+      var cls='ob';
+      if(answered!==undefined) cls+=(oi===answered)?(op.ok?' ok':' no'):'';
+      var dis=answered!==undefined?' disabled':'';
+      html+='<button class="'+cls+'"'+dis+' onclick="ansQ('+sc+','+qi+','+oi+',this)">'+op.t+'</button>';
+    });
+    html+='</div><div class="fb '+(answered!==undefined?(q.ops[answered].ok?'ok':'no'):'')+'" id="f'+qid+'" style="display:'+(answered!==undefined?'block':'none')+'">';
+    if(answered!==undefined) html+=(q.ops[answered].ok?'✓ ':'✗ ')+q.ops[answered].fb;
+    html+='</div></div>';
+    container.innerHTML+=html;
+  });
+}
+function unlockQuestions(){ loadQuestions(S.sc); }
+function ansQ(sc,qi,oi,btn){
+  var qs=qGenerated[sc]||(QB&&QB[sc])||[];
+  var q=qs[qi]; if(!q) return;
+  var op=q.ops[oi],qid='sc'+sc+'q'+qi;
+  btn.parentElement.querySelectorAll('.ob').forEach(function(b){b.disabled=true;});
+  btn.classList.add(op.ok?'ok':'no');
+  var fb=document.getElementById('f'+qid);
+  fb.style.display='block'; fb.className='fb '+(op.ok?'ok':'no');
+  fb.innerHTML=(op.ok?'✓ ':'✗ ')+op.fb;
+  if(!qAnswered[sc]) qAnswered[sc]={};
+  qAnswered[sc][qi]=oi;
+}
+function ans(btn,qid,ok,msg){
+  var fb=document.getElementById('f'+qid); if(!fb) return;
+  btn.parentElement.querySelectorAll('.ob').forEach(function(b){b.classList.remove('ok','no');b.disabled=true;});
+  btn.classList.add(ok?'ok':'no');
+  fb.style.display='block'; fb.className='fb '+(ok?'ok':'no');
+  fb.innerHTML=(ok?'✓ ':'✗ ')+msg;
+}
+</script>
+</body>
+</html>
